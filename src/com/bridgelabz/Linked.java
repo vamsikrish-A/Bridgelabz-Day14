@@ -8,19 +8,19 @@ public class Linked {
         LinkedList<Integer> li = new LinkedList<>();
         System.out.println("Welcome to Linked List:");
 
-        li.add(70);
+        li.add(56);
 
         System.out.println("list:"+li);
         li.addLast(30);
-        li.addLast(56);
+        li.addLast(70);
 
         System.out.println("new list:"+li);
 
-        Iterator i = li.descendingIterator();
+       /* Iterator i = li.descendingIterator();
         System.out.println("Reversing list:");
         while (i.hasNext()) {
             System.out.println(i.next());
-        }
+        } */
 
 
     }
