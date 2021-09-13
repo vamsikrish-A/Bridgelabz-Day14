@@ -61,15 +61,15 @@ public class Linked {
     public static void main(String[] args ) {
         //creating list
         //head = null;
-        head.next = new Node(1);
-        head.next.next = new Node(2);
+        head = new Node(56);
+        head.next = new Node(70);
 
         System.out.println("linked list before insertion:");
         display();
 
-        int x = 3;
+        int x = 30;
         insertAtMid(x);
-        System.out.println("linked list adter insertion:");
+        System.out.println("linked list after insertion:");
         display();
 
 
