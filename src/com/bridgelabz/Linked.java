@@ -13,14 +13,15 @@ public class Linked {
         Node next;
 
         //constructor to create a new node
-        Node(int d) {
-            data = d;
-            next = null;
+        Node(int data, Node next) {
+            this.data = data;
+            this.next = next;
         }
     }
 
+
     //function to insert node at the middle of the list
-    static void insertAtMid(int x) {
+  /*  static void insertAtMid(int x) {
         //if list is empty
         if (head == null)
             head = new Node(x);
@@ -47,30 +48,53 @@ public class Linked {
             newNode.next = ptr.next;
             ptr.next = newNode;
         }
-    }
+    }*/
     // function for display linked list
-    static void display() {
+    static void display(Node head) {
         Node temp = head;
         while (temp != null) {
             System.out.println(temp.data +" ");
             temp = temp.next;
         }
+        System.out.println("null");
+    }
+    public static Node pop(Node headRef) {
+        if (headRef == null) {
+            return null;
+        }
+        int result = headRef.data;
+        headRef = headRef.next;
+        System.out.println("the popped node is "+result);
+        return headRef;
     }
 
     //Driver program to test above
     public static void main(String[] args ) {
-        //creating list
-        //head = null;
+        /*creating list
+        head = null;
         head = new Node(56);
-        head.next = new Node(70);
+        head.next = new Node(70); */
 
-        System.out.println("linked list before insertion:");
-        display();
+        // input keys
+        int[] keys = {56,30,70};
 
-        int x = 30;
+        //point to the head node of the linked list
+        Node head = null;
+
+        //construct a linked list
+        for(int i = keys.length - 1; i >= 0; i--) {
+            head = new Node(keys[i], head);
+        }
+        head = pop(head);
+
+
+        //System.out.println("linked list before insertion:");
+        display(head);
+
+      /*  int x = 30;
         insertAtMid(x);
         System.out.println("linked list after insertion:");
-        display();
+        display(); */
 
 
        /* Iterator i = li.descendingIterator();
