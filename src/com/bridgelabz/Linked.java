@@ -17,6 +17,7 @@ public class Linked {
             this.next = null;
         }
     }
+    public int size;
     //Represent the head and tail of the linked list
     public Node head = null;
     public Node tail = null;
@@ -36,38 +37,45 @@ public class Linked {
             tail.next = newNode;
             tail = newNode;
         }
+        //size will count the no.of nodes present in the list
+        size++;
     }
 
 
     //function to insert node at the middle of the list
- /* static void insertAtMid(int data) {
-        //if list is empty
-        if (head == null)
-            head = new Node();
-        else {
-            //get a new node
-            Node newNode = new Node();
+    public void insertAtMid(int data) {
+        //create a new node
+        Node newNode = new Node(data);
 
-            Node ptr = head;
-            int len = 0;
-
-            //calculate length of the linked list i.e, no.of nodes
-            while (ptr != null) {
-                len++;
-                ptr = ptr.next;
-            }
-            //count the no.f nodes after which the new node is to be inserted
-            int count = ((len % 2) == 0) ? (len / 2) : (len + 1) /2;
-            ptr = head;
-
-            // new node s to be inserted
-            while (count-- > 1)
-                ptr = ptr.next;
-
-            newNode.next = ptr.next;
-            ptr.next = newNode;
+        //checks if list is empty
+        if (head == null) {
+            // if list is empty, both head and tail would point to new node
+            head = newNode;
+            tail = newNode;
         }
-    }*/
+        else {
+            Node temp, current;
+            //Store the mid position of the list
+            int count = (size %2 == 0) ? (size/2) : ((size+1)/2);
+            //node temp will point to head
+            temp = head;
+            current = null;
+
+            //Traverse through the list
+            for (int i = 0; i<count; i++) {
+                //Node current will point to temp
+                current = temp;
+                //Node temp will point to node next to it.
+                temp = temp.next;
+            }
+            //current will point to new node
+            current.next = newNode;
+            //new node will point to temp
+            newNode.next = temp;
+        }
+        size++;
+
+    }
     // function for display linked list
     public void display() {
         Node current = head;
@@ -79,7 +87,7 @@ public class Linked {
             System.out.println(current.data +" ");
             current = current.next;
         }
-        System.out.println("null");
+        System.out.println();
     }
     //delete first Element from the List
     public static Node pop(Node headRef) {
@@ -150,16 +158,28 @@ public class Linked {
         System.out.println("Welcome to Linked List:");
         //adds data to the list.
         li.addNode(56);
-        li.addNode(30);
+        //li.addNode(30);
         li.addNode(70);
 
         System.out.println("Original list");
+        li.display();
+
+        //inserting node 30 in between 56 & 70
+        li.insertAtMid(30);
+        System.out.println("updated list: ");
         li.display();
 
         li.searchNode(30);
         //li.pop();
         //System.out.println("Updated list");
         //li.display();
+
+        //inserting node 40 in between 56,30 & 70.
+        li.insertAtMid(40);
+        System.out.println("updated list:");
+        li.display();
+
+        li.searchNode(40);
 
        /* // input keys
         int[] keys = {56,30,70};
