@@ -121,6 +121,48 @@ public class Linked {
             }
         }
     }
+    //pop middle element from a linked list
+    void popMiddleElement() {
+        Node temp, current;
+        //checks if the list is empty
+        if (head == null) {
+            System.out.println("list is empty");
+            return;
+        }
+        else {
+            //store the mid position of the list
+            int count = (size % 2 == 0) ? (size/2) : ((size+1)/2);
+            //checks whether the head is equal to the tail or not
+            if (head != tail) {
+                //initially , temp will point to head
+                temp = head;
+                current = null;
+                //current will point to node previous to temp
+                for (int i =0; i<count; i++) {
+                    current = temp;
+                    temp = temp.next;
+                }
+                if (current!=null) {
+                    //temp is the middl that needs to be removed
+                    current.next = temp.next;
+                    //Delete temp
+                    temp = null;
+                }
+                //if current point to NULL, head and tail will point to node next to temp.
+                else {
+                    head = tail = temp.next;
+                    //Delete temp
+                    temp = null;
+                }
+            }
+            //if the list contains only one element
+            //then it will removw it and both head and tail will point to null
+            else {
+                head = tail = null;
+            }
+            size--;
+        }
+    }
     //SearchNode will search for a given node in the list
     public void searchNode(int data) {
         Node current = head;
@@ -158,28 +200,36 @@ public class Linked {
         System.out.println("Welcome to Linked List:");
         //adds data to the list.
         li.addNode(56);
-        //li.addNode(30);
+        li.addNode(30);
+        li.addNode(40);
         li.addNode(70);
 
         System.out.println("Original list");
         li.display();
 
         //inserting node 30 in between 56 & 70
-        li.insertAtMid(30);
-        System.out.println("updated list: ");
-        li.display();
+        //li.insertAtMid(30);
+        //System.out.println("updated list: ");
+        //li.display();
 
-        li.searchNode(30);
+        //li.searchNode(30);
         //li.pop();
         //System.out.println("Updated list");
         //li.display();
 
         //inserting node 40 in between 56,30 & 70.
-        li.insertAtMid(40);
+        //li.insertAtMid(40);
+        //System.out.println("updated list:");
+        //li.display();
+
+        li.searchNode(40);
+        li.popMiddleElement();
+        //print updated list
         System.out.println("updated list:");
         li.display();
 
-        li.searchNode(40);
+
+
 
        /* // input keys
         int[] keys = {56,30,70};
